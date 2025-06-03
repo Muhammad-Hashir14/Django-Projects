@@ -1,14 +1,18 @@
 from django.shortcuts import render, HttpResponse
 import json
 import requests
+from django.conf import settings
+import dotenv
 
 # Create your views here.
 def home(request):
     if request.method == "POST":
             city = request.POST["city"]
-            source = "http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=c40a10a2a476d5cc919e7096cc4e2c39"
+            apikey = settings.OPENWEATHER_API_KEY
+            print(apikey)
+            source = f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=imperial&appid={apikey}"
             try:
-                data = requests.get(source.format(city)).json()
+                data = requests.get(source).json()
 
                 info = {
                     "country" : str(data['sys']['country']),
