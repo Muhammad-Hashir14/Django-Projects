@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+{% block title %}
+    blogpost
+{% endblock %}
+
+{% block blogblock %}
+    active
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="blog-post"> 
+            <h2 class="blog-post-title">{{post.title }}</h2>
+            <p class="blog-post-meta">{{ post.data }} by <a href="/about">{{ post.author }}</a></p>
+            <p>{{ post.content }}</p>
+          </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'home/base.html' %} 
+{% block title %} 
+Contact 
+{% endblock %} 
+
+{% block contactblock %}
+    active
+{% endblock %}
+
+
+{% block head %} 
+{% endblock %} 
+{% block body %}
+
+<div class="container">
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  <strong>Message:</strong> {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+  {% endfor %}
+  
+ 
+
+
+  <form action="/contact" method="post">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="email"
+      name="name"
+      placeholder="Name Here"
+      
+    />
+   
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Email Here"/>
+  </div>
+  <br>
+   <div class="form-group">
+    <label for="exampleInputPassword1">Phone</label>
+    <input type="text" class="form-control" name="phone" placeholder="Phone Here"/>
+  </div>
+  <br>
+   <div class="form-group">
+    <label for="exampleInputPassword1">Message</label>
+    <div>
+    <textarea name="content" id="message" cols="174" rows="4" ></textarea>
+    </div>  
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}
